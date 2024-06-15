@@ -1,9 +1,9 @@
-function oneAdd(arr) {
-    let newArr = [];
-    for(let i = 0; i<arr.length; i++){
-            newArr.push(arr[i]);
+function XArray(arr) {
+    let result = 1;
+    for(let i = 0; i < arr.length; i++ ) {
+        result *= arr[i];
     }
-    return newArr;
+    return result;
 }
 
-console.log(oneAdd([1,2,3,4,5]));
+console.log(XArray([1,2,3,4,5]));

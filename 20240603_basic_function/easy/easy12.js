@@ -1,13 +1,14 @@
-function threeUpArray(arr) {
+function oneArray(arr) {
     let newArr = [];
     for(let i = 0; i < arr.length; i++){
-        if(arr[i] > 3){
+        if(arr[i] % 2 === 1){
             newArr.push(arr[i]);
         }
-
+        else newArr.push("");
+        
     }
     return newArr;
     
 }
 
-console.log(threeUpArray([1,2,3,4,5]));
+console.log(oneArray([1,2,5,7]));
