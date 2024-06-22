@@ -10,4 +10,4 @@ function threeUpArray(arr) {
     
 }
 
-console.log(threeUpArray([1,2,3,4,5]));
+console.log(threeUpArray([-3,1,2,3,3.5,4,5]));

@@ -10,4 +10,4 @@ function doubleArray2(arr) {
     
 }
 
-console.log(doubleArray2([2,4,6,8,10]));
+console.log(doubleArray2([2,4,6,8,11]));

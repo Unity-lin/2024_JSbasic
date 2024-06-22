@@ -1,14 +1,11 @@
-function oneArray(arr) {
-    let newArr = [];
-    for(let i = 0; i < arr.length; i++){
-        if(arr[i] % 2 === 1){
-            newArr.push(arr[i]);
+const oneArray = (arr) => {
+    for(let i=0; i<arr.length; i++){
+        if(arr[i] % 2 !== 0){
+            return true;
         }
-        else newArr.push("");
-        
     }
-    return newArr;
-    
+    return false;
 }
-
-console.log(oneArray([1,2,5,7]));
+ 
+console.log(oneArray([2,4,6,7])); //true
+console.log(oneArray([2,4,6,8])); //false
