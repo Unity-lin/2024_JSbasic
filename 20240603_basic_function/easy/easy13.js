@@ -1,19 +1,22 @@
 function b(arr) {
-    let newArr = [];
-    for(let i = 0; i < arr.length; i++){
-        for(let j = i+1; j <arr.length; j++){
-            if(arr[i].length > arr[j].length){
-                let a = arr[i];
-                arr[i] = arr[j];
-                arr[j] = a;
-                
+    for(let i = 0; i < arr.length; i++){ //ok
+        for(let j = 0; j < arr.length - 1; j++){    // ok
+            if(arr[j].length > arr[j+1].length){
+                let a = arr[j]; // 임시변수
+                arr[j] = arr[j+1];  
+                arr[j+1] = a;
             }
-        }
-        
-        
-        
+        }    
     }
-    return newArr
-    
+    return arr
 }
-console.log(b(['a', 'ab','abc','abcd','abcde']));
+// for문의 역활.. 
+console.log(b(['abc', 'ab','a','abcd','abcde']));
+
+
+const sortByLength = (arr) => {
+    return arr.sort((a, b) => a.length - b.length);
+};
+
+
+console.log(sortByLength(['abc', 'ab','a','abcd','abcde']));
