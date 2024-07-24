@@ -25,8 +25,8 @@ console.log(getSecondLargest([1,2,3,4,5,5,4]));
 
 
 function getSecondLargest2(nums) {
-    let largest = -0;
-    let secondLargest = -0;
+    let largest = -Infinity;
+    let secondLargest = -Infinity;
     
     for (let i = 0; i < nums.length; i++) {
         if (nums[i] > largest) {

@@ -1,12 +1,23 @@
 function a(arr) {
     let result = [];
+    let result2 = [];
+    let finalResult = [];
+    for (let i = 0; i < arr.length; i++) {
     
-    for (let i = 0; i < arr.length; i++) {;
-        let restOfWord2 = arr[i].slice(2);;
-        result.push(restOfWord2 + arr[i]);
+      for(let j = arr.length; j >=0; j-- ){
+          if(i === 0){
+            result = result + arr[i][j]
+          }
+          else{
+            result2 = result2 + arr[i][j]
+          }
+      }
+  
     }
+    finalResult = [...result].join("") + " " + [...result2].join("");
+
     
-    return result;
+    return finalResult;
   }
 
   console.log(a(["abc", "def"]));
@@ -15,10 +26,4 @@ function a(arr) {
   // ['abc', 'def'] => ['cba', 'fed']
   // [[0,0],[0,1],[0,2]] => [[0,2], [0,1],[0,0] ]
 
-  for (let i = 0; i < arr.length; i++) {
-    
-    for(let j = ?? -1; j >=0; j-- ){
-        asdff = asdfa+arr[i][j]
-    }
-
-  }
+  
