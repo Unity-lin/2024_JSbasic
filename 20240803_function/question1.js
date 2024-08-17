@@ -62,6 +62,9 @@ const ages = [
 
   const findS = ["apple", "banana", "cherry", "date"]
   const findR1 = findS.find( findS => findS.substring(0,1) === "b")
+
+  //findS.startsWith('b')
+
   console.log(findR1);
 
 
@@ -117,5 +120,9 @@ const ages = [
   console.log(someR3)
 
   const some4 = ["true", "false", "true", "false", "true"]
+  
+  [true, false, false, false];
+
   const someR4 = some4.some(some4 => some4==="true")
+  some4 === true
   console.log(someR4)
