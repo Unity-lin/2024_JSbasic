@@ -219,7 +219,7 @@ const result13 = numbers13.reduce((acc, num, inx) => {
 
 console.log(result13);
 
-//문제 14
+//문제 14 reduce를 두번써야함 
 console.log("14번 문제")
 
 const arr14 = [1, 2, 2, 2, 3, 4, 4]
@@ -292,16 +292,15 @@ console.log("19번 문제")
 const arr19 =  [1, 1, 2, 2, 3, 1, 1];
 
 const result19 = arr19.reduce((acc, cur, inx)=>{
-    if(inx === 0){
-      acc.push(cur);
-    }
-    else if(acc.value === cur){
-      acc.push(cur);
-    }
-    else{
+  
+    const lastGroup = acc[acc.length - 1];
+    if (!lastGroup || lastGroup[lastGroup.length - 1] !== num) {
+      acc.push([num]);
+    } else {
+      lastGroup.push(num);
+  }
 
-    }
-
+    return acc;
 
 },[])
 
@@ -328,3 +327,6 @@ console.log(result20);
 
 
 
+
+
+const numbers19 = [1, 1, 2, 2, 3, 1, 1];

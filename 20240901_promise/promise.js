@@ -88,7 +88,6 @@ makePayment('1234-5678-9012-3456', '감자').then(({cardNumber, product})=>{
 
 
 
-
 login('Mike').then((username) => {
     console.log(`${username} 님이 로그인 했습니다.`);
 	return addCart('감자')
