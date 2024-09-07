@@ -39,7 +39,7 @@ const obj2 = { b: 3, c: 4 };
 const mergedObj = {...obj1, ...obj2, c:3};
 console.log(mergedObj);
 
-//이해불가
+//이해불가 = 덮어쓰기 개념 
 
 //문제 7
 

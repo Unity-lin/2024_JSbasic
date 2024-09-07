@@ -286,25 +286,46 @@ const result18 = obj18.reduce((acc, obj)=>{
 
 console.log(result18);
 
-//문제 19
+//문제 19 : 숫자 배열 [1, 1, 2, 2, 3, 1, 1]에서 값이 변할 때마다 새로운 그룹으로 나누어 [[1, 1], [2, 2], [3], [1, 1]] 형태로 반환
 console.log("19번 문제")
 
 const arr19 =  [1, 1, 2, 2, 3, 1, 1];
 
-const result19 = arr19.reduce((acc, cur, inx)=>{
+// const result19 = arr19.reduce((acc, cur, inx)=>{
   
-    const lastGroup = acc[acc.length - 1];
-    if (!lastGroup || lastGroup[lastGroup.length - 1] !== num) {
-      acc.push([num]);
-    } else {
-      lastGroup.push(num);
+//     const lastGroup = acc[acc.length - 1];
+//     if (!lastGroup || lastGroup[lastGroup.length - 1] !== num) {
+//       acc.push([num]);
+//     } else {
+//       lastGroup.push(num);
+//   }
+
+//     return acc;
+
+// },[])
+// console.log(result19);
+
+
+
+const groupedByChange = arr19.reduce((acc, num)=>{
+  const lastGroup = acc[acc.length - 1];
+  if (!lastGroup || lastGroup[lastGroup.length - 1] !== num) {
+    acc.push([num]);
+  } else {
+    lastGroup.push(num);
   }
+  return acc;
+}, []);
 
-    return acc;
+console.log('문제 19: 값이 변할 때마다 그룹화:', groupedByChange);
 
-},[])
 
-console.log(result19);
+
+
+
+
+
+
 
 //포기
 

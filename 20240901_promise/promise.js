@@ -55,9 +55,9 @@ function login(username) {
 }
 
 // 로그인 사용 예
-login('Mike').then((username) => {
-    console.log(`${username} 님이 로그인 했습니다.`);
-});
+// login('Mike').then((username) => {
+//     console.log(`${username} 님이 로그인 했습니다.`);
+// });
 
 // 2. 장바구니에 담기
 function addCart(item) {
@@ -68,9 +68,9 @@ function addCart(item) {
     });
 }
 
-addCart('감자').then((item)=>{
-    console.log(`${item} 가 담겼습니다`);
-});
+// addCart('감자').then((item)=>{
+//     console.log(`${item} 가 담겼습니다`);
+// });
 
 // 3. 결제하기
 function makePayment(cardNumber, product) {
@@ -81,19 +81,38 @@ function makePayment(cardNumber, product) {
     });
 }
 
-makePayment('1234-5678-9012-3456', '감자').then(({cardNumber, product})=>{
-    console.log(`${product} 가 ${cardNumber}으로 결제되었습니다`)
-})
+// makePayment('1234-5678-9012-3456', '감자').then(({cardNumber, product})=>{
+//     console.log(`${product} 가 ${cardNumber}으로 결제되었습니다`)
+// })
 ;
 
 
 
-login('Mike').then((username) => {
-    console.log(`${username} 님이 로그인 했습니다.`);
-	return addCart('감자')
-}).then((item)=>{
-    console.log(`${item} 가 담겼습니다`);
-	return makePayment('1234-1234-1234-1234', item);
-}).then(({cardNumber, product})=>{
-    console.log(`${product} 가 ${cardNumber}으로 결제되었습니다`)
-});
+// login('Mike').then((username) => {
+//     console.log(`${username} 님이 로그인 했습니다.`);
+// 	return addCart('감자')
+// }).then((item)=>{
+//     console.log(`${item} 가 담겼습니다`);
+// 	return makePayment('1234-1234-1234-1234', item);
+// }).then(({cardNumber, product})=>{
+//     console.log(`${product} 가 ${cardNumber}으로 결제되었습니다`)
+// });
+
+
+async function processOrder() {
+	try{
+		const username = await login('Mike');
+		console.log(`${username} 님이 로그인 했습니다.`);
+
+		const item = await addCart('감자');
+		console.log(`${item} 을 장바구니에 넣었습니다.`);
+
+		const { cardNumber, product }=  await makePayment('1234-1234-1234-1234', item)
+		console.log(`${product} 상품이 ${cardNumber} 로 결제되었습니다.`);
+
+	} catch(err){
+		console.error('오류 발생:', err);
+	}
+}
+
+processOrder();

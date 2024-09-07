@@ -7,6 +7,16 @@ const promise = new Promise((resolve, reject)=>{
     resolve(number);
 })
 
+const sp = new Promise((resolve)=>{
+    resolve(42)
+});
+
+sp.then((value)=>{
+    console.log(value);
+})
+;
+
+
 //easy 2
 
 const promise2 = new Promise((resolve, reject)=>{
@@ -17,6 +27,18 @@ const promise2 = new Promise((resolve, reject)=>{
 
     },2000)
 })
+
+const sp2 = new Promise((resolve)=>{
+    setTimeout(()=>{
+        resolve("Data fetched successfully")
+    },2000)
+})
+
+sp2.then((strings)=>{
+    console.log(strings);
+});
+
+
 
 //easy 3
 
@@ -30,30 +52,52 @@ const promise3 = new Promise((resolve, reject)=>{
 		}
 });
 
-//easy 4 
 
-function firstPromise(string) {
-        return new Promise((resolve, reject) => {
+// E3. 숫자 5보다 큰 값이 입력되면 "Input too large" 에러를 반환하는 Promise를 만들어서, 에러 메시지 출력하기.
+const checkInputSize = (num) => {
+    return new Promise((resolve, reject)=>{
+		if(num < 5) {
+			console.log(`E3 result is ${num}`);
+			resolve(num);
+		} else {
+			reject(("Input too large"));
+		}
+    });
+}
+
+
+checkInputSize(4).catch((err)=>{
+    console.log(err);
+})
+
+
+
+//E4 첫 번째 Promise는 1초 후에 "First", 두 번째 Promise는 2초 후에 "Second"를 반환하게 해서, 두 결과를 함께 출력하기.
+
+const firstPromise = new Promise((resolve) => {
             setTimeout(() => {
-                resolve(string);
+                resolve('First');
             }, 1000);
         });
-    }
 
-function secondPromise(str) {
-        return new Promise((resolve, reject) => {
+const secondPromise = new Promise((resolve) => {
             setTimeout(() => {
-                resolve(str);
+                resolve('Second');
             }, 2000);
         });
-    }
 
-firstPromise('First').then((string) => {
+/*firstPromise('First').then((string) => {
     console.log(`${string}`)
     return secondPromise('Second')
 }).then((str)=>{
     console.log(`${str}`);
+});*/
+
+Promise.all([firstPromise,secondPromise]).then((values)=>{
+    console.log(`E4 result is ${values}`)
 });
+
+
 
 //easy 5 
 
@@ -67,38 +111,85 @@ const promise5 = new Promise((resolve, reject)=>{
 })
 
 //normal 1 //1초 후에 파일 내용을 반환하는 Promise를 만들어서, 파일이 없으면 "File not found" 에러를 반환하기
+
+// 참고!!!! 
+
+// setTimeout(()=>{
+//     if(fileName === 'file.txt'){
+//         resolve('File content');
+//     }else{
+//         reject('File not found');
+//     }
+// }, 1000);
+
+
+
+
+
+
+
+
 //normal 2 //숫자를 입력 받아, 그 숫자를 2로 곱한 후 3을 더하고, 그 결과를 10으로 나누는 세 개의 Promise를 체인으로 연결
 
-function plusNum(num){
-    return new Promise((resolve, reject)=>{
-         num = num + 2;
-        resolve(num);
-    });
-}
-function multiplyNum(num){
-    return new Promise((resolve, reject)=>{
-        num = num * 2;
-        resolve(num);
-    });
-}
-function devideNum(num){
-    return new Promise((resolve, reject)=>{
-        num = num/10;
-        resolve(num);
-    });
-}
+// function plusNum(num){
+//     return new Promise((resolve, reject)=>{
+//          num = num + 2;
+//         resolve(num);
+//     });
+// }
+// function multiplyNum(num){
+//     return new Promise((resolve, reject)=>{
+//         num = num * 2;
+//         resolve(num);
+//     });
+// }
+// function devideNum(num){
+//     return new Promise((resolve, reject)=>{
+//         num = num/10;
+//         resolve(num);
+//     });
+// }
 
-plusNum(20).then((num)=>{ return multiplyNum(num)})
-.then((num)=>{return devideNum(num)})
-.then((num)=>{console.log(`${num}`)})
+// plusNum(20).then((num)=>{ return multiplyNum(num)})
+// .then((num)=>{return devideNum(num)})
+// .then((num)=>{console.log(`${num}`)})
+
+
+
+const multiplyBy2 = (num) => Promise.resolve(num * 2);
+const add3 = (num) => Promise.resolve(num + 3);
+const divideBy10 = (num) => Promise.resolve(num/10);
+
+multiplyBy2(5)
+.then(add3)
+.then(divideBy10)
+.then(result => console.log(`${result}`));
+
+
+
+
+
 
 //normal 3 사용자 데이터를 가져오는 Promise와 그 데이터를 기반으로 사용자 권한을 확인하는 Promise를 만들어서 권한 정보 출력
+
+
+const getUserData = () => Promise.resolve({id:2, name: 'John'});
+const checkUserPermission = (user) => user.id === 1 ? Promise.resolve('Admin'): Promise.resolve("User") 
+
+
+getUserData()
+.then(checkUserPermission)
+.then(resolve => console.log(`${resolve}`));
+
+
+
+
 //normal 4 입력된 비밀번호가 "password123"일 때만 resolve하는 Promise를 만들어서, 비밀번호가 틀리면 "Invalid password" 에러를 출력
 
 const promise9 = new Promise((resolve, reject)=>{
     const pwd = "password123"
     if(pwd === "password123") {
-        console.log(Success);
+        console.log("Success");
         resolve(pwd);
     } else {
         reject(new Error("Invalid password"));
