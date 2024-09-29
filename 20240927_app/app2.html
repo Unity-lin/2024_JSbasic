@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> 2. Todo List </h1> 
+
+
+    <div id = "tasklist"> 
+        <div>
+            <input type = "checkbox" onclick="toggleStrikeThrough(this)"> 1번 </input>
+        </div>
+        <div>
+            <input type = "checkbox" onclick="toggleStrikeThrough(this)"> 2번 </input>
+        </div>
+        <div>
+            <input type = "checkbox" onclick="toggleStrikeThrough(this)"> 3번 </input>
+        </div>
+        <div>
+            <input type = "checkbox" onclick="toggleStrikeThrough(this)"> 4번 </input>
+        </div>
+    </div>
+
+
+
+
+    <input id = "input" placeholder="Add new task">
+    <button id="addtask">Add Task</button>  
+    <button id="delete">Delete</button> 
+
+    
+    
+    <script src="app2.js"></script>
+</body>
+<script>
+
+    function toggleStrikeThrough(checkbox) {
+
+        const listItem = checkbox.parentElement;
+
+       if(checkbox.checked){
+        listItem.style.textDecoration = "line-through";
+       } else {
+        listItem.style.textDecoration = "none";
+       }
+
+    }
+
+</script>
+
+</html>
