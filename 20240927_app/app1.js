@@ -8,4 +8,8 @@ const decrease = document.getElementById("decrease");
     
     decrease.onclick = () => {  
         const current = parseInt(number.innerText, 10);  
+        if(current <= 0){
+            current = 0
+            number.innerHTML = current
+        }
         number.innerText = current - 1;};

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> 7. Light/Dark Mode Toggle </h1> 
+        <input id="toggleswitch" class="btn" type="button" value="Toggle Dark" onclick="toggleLightDark(this);">
+        </input>   
+    </div>    
+        <script>
+
+function toggleLightDark(self){
+    let body = document.querySelector('body'); 
+    let btn = document.getElementById('toggleswitch'); 
+    if(self.value === 'Toggle Dark'){  
+      body.style.backgroundColor = 'black';  
+      body.style.color = 'white';
+      self.value = 'Toggle Light';
+    } else { 
+      body.style.backgroundColor = 'white';
+      body.style.color = 'black';
+      self.value = 'Toggle Dark';
+    }
+  }
+        </script>
+</body>
+</html>
+

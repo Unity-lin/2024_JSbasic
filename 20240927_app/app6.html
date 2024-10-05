@@ -7,28 +7,105 @@
 </head>
 <body>
     <h1> 6. Quiz App </h1> 
-    <h2> what is 2 + 2? </h2>
-    <div>
-        <input type = "radio" id="fail">  3  </input>  
+    <p id="quiz-question">질문이 들어 갑니다.</p>
+    <div id="options-container">
+        <!-- 선택지가 동적으로 생성됩니다 -->
+        
     </div>
-    <div>
-        <input type = "radio" id="success">  4 </input> 
-    </div>
-        <div id = result> </div>
+    
         <button id="next"> Next </button>     
         <script>
-            const fail = document.getElementById("fail");
-            const success = document.getElementById("success");
-            const result = document.getElementById("result"); d
+            const quizData = [
+                {
+                    question: "더하기 2 + 2?",
+                    options: ["3", "4", "5"],
+                    correct: "4"
+                },
+                
+            ];
 
-            fail.addEventListener('click', function(){
-                result = document.createTextNode("틀리셨네요 다음에는 맞추시길 기원할게요");
-            })
-            success.addEventListener('click', function(){
-                result = document.createTextNode("맞췄어요");
-            })
+            let currentQuestion = 0;
+            let score = 0;
+            
+            function loadQuestion(){
+                // 1. quiz data 첫 질문을 가져와
+                console.log(quizData[currentQuestion].question);
+                const currentQuiz = quizData[currentQuestion];
+
+                document.getElementById('quiz-question').innerText = currentQuiz.question;
+
+                const optionsContainer = document.getElementById('options-container');
+
+    
+                // 1.1 옵션을 가져와
+                currentQuiz.options.forEach((optionText, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.classList.add('form-check');
+
+                const optionInput = document.createElement('input');
+                optionInput.classList.add('form-check-input');
+                optionInput.type = 'radio';
+                optionInput.name = 'answer';
+                optionInput.id = `option${index}`;
+                optionInput.value = optionText;
+
+                const optionLabel = document.createElement('label');
+                optionLabel.classList.add('form-check-label');
+                optionLabel.htmlFor = `option${index}`;
+                optionLabel.innerText = optionText;
+
+                optionDiv.appendChild(optionInput);
+                optionDiv.appendChild(optionLabel);
+
+                optionsContainer.appendChild(optionDiv);
+            });                // 2. 화면에 표시해야 함.--
+                //
+            }
+
+            loadQuestion();
+
+            function nextQuestion(){
+                // 유효성 검사. 체크하지 않으면 체크해 주세요.
+                
+                // 답을체크해
+                const options = document.getElementsByName('answer');
+                let selectedAnswer;
+                
+                options.forEach(option => {
+                    if(option.checked){
+                        selectedAnswer = option.value; // 선택한 답을 저장하는 변수
+                    }
+                });
+
+                if(!selectedAnswer){
+                    alert('체크해주세요');
+                    return;
+                }
+            
+                // 맞는지 틀리는지 변수 저장
+                if(selectedAnswer === quizData[currentQuestion].correct){
+                    score++;
+                }
+
+                currentQuestion++;
+
+                // 다음 질문을 불러오도록 로드퀘스쳔에게 요청.
+                loadQuestion();
+
+                // 최종점수.
+                document.querySelector("section").innerHTML = `
+                <h3>Your Score: ${score} / ${quizData.length}</h3>
+                <button class="btn btn-primary mt-3" onclick="location.reload()">Restart Quiz</button>
+                 `;
+            }
+
+        
+            //체크박스가 둘중 하나라도 선택되면 대답이떠야되잖아요 --> 둘다선택이되요 
+            //체크박스를 클릭해도 이벤트가 발생안함
+            //넥스트버튼 => 다음문제가 랜덤한 숫자의 형태로 문제가 또 출시해야한다
+            
+
         </script>
         
 </body>
 </html>
-//역시나 안됨

@@ -11,12 +11,20 @@
         <h2> Temperature : <h2 id="Temperature"> </h2> </h2> 
         <h2> Condition : <h2 id="Condition"> </h2> </h2>  
         <script>
-            //먼저 인풋 박스의 내용과 정확히 일치하는 장소를 입력받는다
-            //그다음 api에서 정보를 받는다
-            //api를 호출한다 (fetch)
-            //json으로 변환한다
-            //화면에 출력한다
-            https://www.data.go.kr/
+        const input = document.getElementById('input').value.trim();
+        const apiKey = '날씨 apikey'; 
+        const apiUrl = 'api 주소' + apiKey + `&q=${input}`;
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const temperature = data.current.temp_c;
+                const condition = data.current.condition.text;
+
+                document.getElementById('Temperature').textContent = 'Temperature: ' + temperature + '°C';
+                document.getElementById('Condition').textContent = 'Condition: ' + condition;
+            })
+            .catch(error => console.log(error));
         </script>
 </body>
 </html>

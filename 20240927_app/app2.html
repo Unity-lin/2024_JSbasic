@@ -10,21 +10,12 @@
 
 
     <div id = "tasklist"> 
-        <div>
-            <input type = "checkbox" onclick="toggleStrikeThrough(this)"> 1번 </input>
-        </div>
-        <div>
-            <input type = "checkbox" onclick="toggleStrikeThrough(this)"> 2번 </input>
-        </div>
-        <div>
-            <input type = "checkbox" onclick="toggleStrikeThrough(this)"> 3번 </input>
-        </div>
-        <div>
-            <input type = "checkbox" onclick="toggleStrikeThrough(this)"> 4번 </input>
-        </div>
+        <ul id="todo-list">
+            <li> <input type="checkbox"> Task 1 </li>
+            <li> <input type="checkbox"> Task 2 </li>
+            <li> <input type="checkbox"> Task 3 </li>
+        </ul>
     </div>
-
-
 
 
     <input id = "input" placeholder="Add new task">
@@ -33,21 +24,54 @@
 
     
     
-    <script src="app2.js"></script>
+
 </body>
 <script>
 
-    function toggleStrikeThrough(checkbox) {
+    const todoList = document.getElementById("todo-list");
+    const input = document.getElementById("input");
+    const addtask = document.getElementById("addtask");
+    const deletes = document.getElementById("delete");   
 
-        const listItem = checkbox.parentElement;
 
-       if(checkbox.checked){
-        listItem.style.textDecoration = "line-through";
-       } else {
-        listItem.style.textDecoration = "none";
-       }
+    todoList.addEventListener('change', function(e) {
+        if(e.target && e.target.type === 'checkbox') {
+            let listItem = e.target.parentElement;
+            if(e.target.checked) {
+                listItem.style.textDecoration = "line-through";
+            } else {
+                listItem.style.textDecoration = "none";
+            }
+        }
+    });
 
-    }
+
+
+
+
+    addtask.addEventListener('click', function() {
+        var div = document.createElement('div');
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        var text = document.createTextNode(input.value);
+        div.appendChild(checkbox);
+        div.appendChild(text);
+        tasklist.appendChild(div);
+    });
+
+    deletes.addEventListener('click', toggleStrikeThrough)
+
+    // function toggleStrikeThrough(checkbox) {
+
+    //     const listItem = checkbox.parentElement;
+
+    //     if(checkbox.checked){
+    //         listItem.style.textDecoration = "line-through";
+    //     } else {
+    //         listItem.style.textDecoration = "none";
+    //     }
+
+    // }
 
 </script>
 
